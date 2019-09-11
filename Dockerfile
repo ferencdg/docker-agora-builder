@@ -10,6 +10,3 @@ RUN apk --no-cache add /root/packages/effortman/x86_64/ldc-1.16.0-r0.apk \
     /root/packages/effortman/x86_64/dub-1.17.0-r0.apk \
     /root/packages/effortman/x86_64/dtools-rdmd-2.087.1-r0.apk \
     && rm -rf /root/packages/
-ADD . /root/agora/
-WORKDIR /root/agora/
-RUN dub build --skip-registry=all --compiler=ldc2 ${DUB_OPTIONS}
