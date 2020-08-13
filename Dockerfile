@@ -1,12 +1,2 @@
-FROM alpine:3.10.1
-ARG DUB_OPTIONS
-RUN apk --no-cache add build-base git libsodium-dev openssl openssl-dev sqlite-dev zlib-dev
-COPY --from=bpfk/pkgbuilder:latest --chown=root:root /home/effortman/.abuild/*.rsa.pub /etc/apk/keys/
-COPY --from=bpfk/ldc:latest /root/packages/ /root/packages/
-COPY --from=bpfk/dub:latest /root/packages/ /root/packages/
-RUN apk --no-cache add /root/packages/effortman/x86_64/ldc-1.16.0-r0.apk \
-    /root/packages/effortman/x86_64/ldc-runtime-1.16.0-r0.apk \
-    /root/packages/effortman/x86_64/ldc-static-1.16.0-r0.apk \
-    /root/packages/effortman/x86_64/dub-1.17.0-r0.apk \
-    /root/packages/effortman/x86_64/dtools-rdmd-2.087.1-r0.apk \
-    && rm -rf /root/packages/
+FROM alpine:3.12.0
+RUN apk --no-cache add build-base dtools-rdmd dub git ldc libsodium-dev openssl-dev sqlite-dev zlib-dev
